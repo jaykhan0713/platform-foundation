@@ -1,4 +1,9 @@
-COPY tests/ /work/tests/
-COPY vendor/ /work/vendor/
+FROM grafana/k6:1.6.1
 
-CMD ["k6", "run", "/work/tests/synth.js"]
+WORKDIR /work
+
+COPY tests/ ./tests/
+COPY vendor/ ./vendor/
+
+ENTRYPOINT ["k6"]
+CMD ["run", "tests/synth.js"]
