@@ -63,8 +63,8 @@ function getAccessToken() {
 
 
 export default function () {
-    const id = Math.floor(Math.random() * 10) + 1
-    const url = `${targetUrl}/${id}`
+    const experimentId = Math.floor(Math.random() * 10) + 1
+    const url = `${targetUrl}/${experimentId}`
 
     const token = getAccessToken()
 
