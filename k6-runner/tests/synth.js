@@ -3,17 +3,28 @@ import encoding from 'k6/encoding'
 import { check, fail, sleep } from 'k6'
 import { uuidv4 } from '../vendor/k6-utils/index.js'
 
+const VUS = __ENV.VIRTUAL_USERS
+    ? Number(__ENV.VIRTUAL_USERS)
+    : 1
+
+const DURATION = __ENV.DURATION || '10s'
+
 export const options = {
-    vus: 2,
-    duration: '10s'
+    vus: VUS,
+    duration: DURATION
 }
+
+const SLEEP_INTERVAL = __ENV.SLEEP_INTERVAL
+    ? Number(__ENV.SLEEP_INTERVAL)
+    : 0
 
 const userId = uuidv4()
 
 let cachedToken = null
 let tokenExpiresAtMs = 0
-const targetUrl = __ENV.TARGET_URL
-if (!targetUrl) {
+const apiUrl = __ENV.API_URL
+
+if (!apiUrl) {
     throw new Error('Missing target url')
 }
 
@@ -64,7 +75,7 @@ function getAccessToken() {
 
 export default function () {
     const experimentId = Math.floor(Math.random() * 10) + 1
-    const url = `${targetUrl}/${experimentId}`
+    const url = apiUrl + `api/v1/experiments/${experimentId}`
 
     const token = getAccessToken()
 
@@ -79,6 +90,9 @@ export default function () {
         'status is 2xx': (r) => r.status >= 200 && r.status < 300
     })
 
+    if (SLEEP_INTERVAL > 0) {
+        sleep(SLEEP_INTERVAL)
+    }
     // sleep seconds to avoid spamming
-    sleep(0.03)
+
 }
