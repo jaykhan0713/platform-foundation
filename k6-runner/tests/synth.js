@@ -75,7 +75,7 @@ function getAccessToken() {
 
 export default function () {
     const experimentId = Math.floor(Math.random() * 10) + 1
-    const url = apiUrl + `api/v1/experiments/${experimentId}`
+    const url = apiUrl + `synth/api/v1/experiments/${experimentId}`
 
     const token = getAccessToken()
 
