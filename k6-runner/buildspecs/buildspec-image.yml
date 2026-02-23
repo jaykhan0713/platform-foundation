@@ -38,7 +38,7 @@ phases:
         DIGEST=$(awk '/digest: sha256:/ {print $3; exit}' push.log | tr -d '\r\n')
         echo DIGEST=[$DIGEST]
         
-        IMAGE_DIGEST_URI=${ECR_REPO_URI}:${DIGEST}
+        IMAGE_DIGEST_URI="${ECR_REPO_URI}@${DIGEST}"
         echo IMAGE_DIGEST_URI=[$IMAGE_DIGEST_URI]
         echo "$IMAGE_DIGEST_URI" > imagedigesturi.txt
         
