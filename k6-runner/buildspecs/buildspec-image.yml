@@ -33,4 +33,13 @@ phases:
         set -e
 
         echo Pushing image...
-        docker push ${IMAGE_URI}
+        docker push ${IMAGE_URI} | tee push.log
+        
+        DIGEST=$(awk '/digest: sha256:/ {print $3; exit}' push.log | tr -d '\r\n')
+        echo "$DIGEST" > imagedigest.txt
+        
+        echo DIGEST=$DIGEST
+
+artifacts:
+  files:
+    imagedigest.txt
