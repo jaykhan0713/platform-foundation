@@ -36,9 +36,13 @@ phases:
         docker push ${IMAGE_URI} | tee push.log
         
         DIGEST=$(awk '/digest: sha256:/ {print $3; exit}' push.log | tr -d '\r\n')
-        echo "$DIGEST" > imagedigest.txt
         echo DIGEST=[$DIGEST]
+        
+        IMAGE_DIGEST_URI=${ECR_REPO_URI}:${DIGEST}
+        echo IMAGE_DIGEST_URI=[$IMAGE_DIGEST_URI]
+        echo "$IMAGE_DIGEST_URI" > imagedigesturi.txt
+        
 
 artifacts:
   files:
-    imagedigest.txt
+    imagedigesturi.txt
