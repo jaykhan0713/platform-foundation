@@ -37,8 +37,7 @@ phases:
         
         DIGEST=$(awk '/digest: sha256:/ {print $3; exit}' push.log | tr -d '\r\n')
         echo "$DIGEST" > imagedigest.txt
-        
-        echo DIGEST=$DIGEST
+        echo DIGEST=[$DIGEST]
 
 artifacts:
   files:
