@@ -35,16 +35,16 @@ function getAccessToken() {
         return cachedToken
     }
 
-    const domain = __ENV.COGNITO_DOMAIN
+    const domainUrl = __ENV.COGNITO_DOMAIN_URL
     const clientId = __ENV.COGNITO_CLIENT_ID
     const clientSecret = __ENV.COGNITO_CLIENT_SECRET
     const scope = __ENV.COGNITO_SCOPE || ''
 
-    if (!domain || !clientId || !clientSecret) {
+    if (!domainUrl || !clientId || !clientSecret) {
         throw new Error('Missing required Cognito env vars')
     }
 
-    const url = `${domain}/oauth2/token`
+    const url = `${domainUrl}/oauth2/token`
 
     const body = scope
         ? `grant_type=client_credentials&scope=${encodeURIComponent(scope)}`
