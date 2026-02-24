@@ -1,6 +1,6 @@
 import http from 'k6/http'
 import encoding from 'k6/encoding'
-import { check, fail, sleep } from 'k6'
+import { check, sleep } from 'k6'
 import { uuidv4 } from '../vendor/k6-utils/index.js'
 
 const VUS = __ENV.VIRTUAL_USERS
