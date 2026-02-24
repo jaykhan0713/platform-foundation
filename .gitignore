@@ -1,2 +1,4 @@
 .idea
-k6-runner/local
+
+# k6-runner
+k6-runner/**/node_modules

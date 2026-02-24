@@ -99,7 +99,7 @@ const main = async () => {
     process.env.COGNITO_SCOPE = scope
     process.env.COGNITO_CLIENT_SECRET = clientSecret
 
-    const testPath = 'tests/synth.js'
+    const testPath = './tests/synth.js'
 
     console.log('Starting k6 with resolved configuration')
 
