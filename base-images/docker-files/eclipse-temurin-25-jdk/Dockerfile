@@ -1,1 +1,1 @@
-FROM eclipse-temurin:25-jdk
+FROM public.ecr.aws/docker/library/eclipse-temurin:25-jdk
