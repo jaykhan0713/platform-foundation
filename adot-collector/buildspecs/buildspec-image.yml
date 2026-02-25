@@ -1,0 +1,36 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - |
+        set -e
+
+        echo Logging in to ECR...
+        aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+
+        IMAGE_TAG="stable"
+        echo IMAGE_TAG=${IMAGE_TAG}
+        
+        IMAGE_URI=${ECR_REPO_URI}:${IMAGE_TAG}
+        echo IMAGE_URI=${IMAGE_URI}
+
+        export IMAGE_TAG IMAGE_URI
+
+  build:
+    commands:
+      - |
+        set -e
+
+        echo Building image...
+
+        docker build \
+          -t ${IMAGE_URI} ./adot-collector
+
+  post_build:
+    commands:
+      - |
+        set -e
+
+        echo Pushing image...
+        docker push ${IMAGE_URI}
