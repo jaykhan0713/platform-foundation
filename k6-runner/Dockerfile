@@ -1,9 +1,7 @@
 FROM grafana/k6:1.6.1
 
 USER root
-#RUN apk add --no-cache nodejs npm
-RUN apk add --no-cache nodejs npm \
- && node -v
+RUN apk add --no-cache nodejs npm
 
 WORKDIR /work
 

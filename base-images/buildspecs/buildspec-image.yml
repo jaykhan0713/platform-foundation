@@ -1,0 +1,31 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - |
+        set -e
+
+        echo Logging in to ECR...
+        aws ecr get-login-password --region ${AWS_REGION} \
+          | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+
+  build:
+    commands:
+      - |
+        set -e
+
+        for dir in base-images/docker-files/*; do
+          NAME=$(basename $dir)
+          IMAGE_TAG=${NAME}
+          IMAGE_URI=${ECR_REPO_URI}:${IMAGE_TAG}
+
+          echo "Building ${IMAGE_URI}..."
+
+          docker build \
+            -t ${IMAGE_URI} \
+            ${dir}
+
+          echo "Pushing ${IMAGE_URI}..."
+          docker push ${IMAGE_URI}
+        done
