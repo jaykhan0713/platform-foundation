@@ -6,3 +6,6 @@ USER root
 COPY fonts/* /usr/local/share/fonts/
 
 USER gotenberg
+
+ENTRYPOINT ["gotenberg"]
+CMD ["--api-timeout=900s", "--chromium-auto-start=true"]
