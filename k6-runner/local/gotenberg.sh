@@ -12,6 +12,10 @@ export COGNITO_CLIENT_SECRET_NAME='jay-platform/prod/gateway/cognito/synth-clien
 
 export AWS_DEFAULT_REGION='us-west-2'
 
+# ENV vars for test itself
+export VIRTUAL_USERS='1'
+export DURATION='60s'
+export SLEEP_INTERVAL='0.05'
 export TEST='gotenberg'
 
 node ./bootstrap/bootstrap.js

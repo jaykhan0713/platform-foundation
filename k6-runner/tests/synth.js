@@ -7,7 +7,7 @@ const VUS = __ENV.VIRTUAL_USERS
     ? Number(__ENV.VIRTUAL_USERS)
     : 1
 
-const DURATION = __ENV.DURATION || '10s'
+const DURATION = __ENV.DURATION || '60s'
 
 export const options = {
     vus: VUS,
