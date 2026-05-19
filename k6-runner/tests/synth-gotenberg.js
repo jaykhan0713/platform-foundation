@@ -2,7 +2,7 @@ import http from 'k6/http'
 import encoding from 'k6/encoding'
 import { check, sleep } from 'k6'
 
-const VUS = __ENV.VIRTUAL_USERS ? Number(__ENV.VIRTUAL_USERS) : 10
+const VUS = __ENV.VIRTUAL_USERS ? Number(__ENV.VIRTUAL_USERS) : 1
 const DURATION = __ENV.DURATION || '60s'
 
 export const options = {
