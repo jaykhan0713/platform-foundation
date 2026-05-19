@@ -99,9 +99,11 @@ const main = async () => {
     process.env.COGNITO_SCOPE = scope
     process.env.COGNITO_CLIENT_SECRET = clientSecret
 
-    const testPath = './tests/synth-gotenberg.js'
+    const test = process.env.TEST
 
-    console.log('Starting k6 with resolved configuration')
+    const testPath = `./tests/${test ?? 'synth'}.js`
+
+    console.log(`Starting k6 test: ${testPath} with resolved configuration`)
 
     const child = spawn('k6', ['run', testPath], {
         stdio: 'inherit',
