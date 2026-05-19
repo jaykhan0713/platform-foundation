@@ -8,6 +8,7 @@ WORKDIR /work
 COPY bootstrap/ ./bootstrap/
 COPY tests/ ./tests/
 COPY vendor/ ./vendor/
+COPY resources/ ./resources/
 
 WORKDIR /work/bootstrap
 RUN npm ci --omit=dev
