@@ -2,3 +2,6 @@
 
 # k6-runner
 k6-runner/**/node_modules
+
+#resources ignores
+k6-runner/resources/gotenberg/important
